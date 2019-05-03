@@ -5,45 +5,46 @@
 const chalk = require('chalk');
 
 const packageJsonDir = process.argv.slice(2)[0] || '../../package.json';
-
 const packageJson = require(packageJsonDir);
 
-log('\nChecking dependencies for wildcards');
+console.log(chalk.cyan('\nChecking dependencies for wildcards...'));
 
-const dependencySections = [packageJson.dependencies, packageJson.devDependencies];
-dependencySections.forEach(checkDependencySection);
-
-log('All dependencies are wildcard free', 'success');
-
-function checkDependencySection(dependencySection) {
+const dependencySections = [packageJson.dependencies, packageJson.devDependencies].filter(Boolean);
+const numberOfDependencies = dependencySections.reduce(
+    (total, dependencies) => Object.keys(dependencies).length + total,
+    0
+);
+let progressTracker = 1;
+dependencySections.forEach(dependencySection =>
     Object.keys(dependencySection).forEach(dependencyName => {
         const versionString = dependencySection[dependencyName];
-        if (versionString.startsWith('http')) {
-            log(`HTTP dependency detected (${versionString}), skipping.`, 'warning');
+        console.log(
+            chalk.cyan(`Progress: ${Math.round((100 * progressTracker++) / numberOfDependencies)}%`)
+        );
+        if (versionString.includes('http')) {
+            console.log(
+                chalk.yellow(
+                    `HTTP dependency ${chalk.magenta.bold(
+                        dependencyName
+                    )} detected (${chalk.magenta.bold(versionString)}), skipping.`
+                )
+            );
             return;
         }
         const allowedCharacters = /^[a-zA-Z\d.-]+$/;
         const valid = allowedCharacters.test(versionString);
         if (!valid) {
-            const errorMessage = `Dependency ${dependencyName} has a version string (${versionString}) with invalid characters`;
-            log(errorMessage, 'error');
+            const errorMessage = chalk.red(
+                `Dependency ${chalk.magenta.bold(
+                    dependencyName
+                )} has a version string (${chalk.magenta.bold(
+                    versionString
+                )}) with invalid characters`
+            );
+            console.log(errorMessage);
             throw errorMessage;
         }
-    });
-}
+    })
+);
 
-function log(message, type) {
-    switch (type) {
-        case 'error':
-            console.log(chalk.red(message));
-            break;
-        case 'warning':
-            console.log(chalk.yellow(message));
-            break;
-        case 'success':
-            console.log(chalk.green(message));
-            break;
-        default:
-            console.log(chalk.cyan(message));
-    }
-}
+console.log(chalk.green('All dependencies are wildcard free!'));
