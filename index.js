@@ -8,7 +8,7 @@ const packageJsonDir = process.argv.slice(2)[0] || '../../package.json';
 
 const packageJson = require(packageJsonDir);
 
-log('Checking dependencies for wildcards');
+log('\nChecking dependencies for wildcards');
 
 const dependencySections = [packageJson.dependencies, packageJson.devDependencies];
 dependencySections.forEach(checkDependencySection);
