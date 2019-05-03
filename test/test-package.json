@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "test-dependency-1": "1.1.1",
+    "test-dependency-2": "1.1.1",
+    "test-dependency-3": "http://www.some-test-repo.com/file.git#1.1.1"
+  },
+  "devDependencies": {
+    "test-dev-dependency-1": "1.1.1",
+    "test-dev-dependency-2": "https://www.some-test-repo.com/file.git#1.1.1",
+    "test-dev-dependency-3": "^1.1.1"
+  }
+}

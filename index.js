@@ -1,8 +1,8 @@
 const chalk = require('chalk');
 
-const packageJsonDir = process.argv.slice(2)[0];
+const packageJsonDir = process.argv.slice(2)[0] || '../../package.json';
 
-const packageJson = require(packageJsonDir || '../../package.json');
+const packageJson = require(packageJsonDir);
 
 log('Checking dependencies for wildcards');
 
