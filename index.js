@@ -4,23 +4,24 @@
 
 const chalk = require('chalk');
 
-const packageJsonDir = process.argv.slice(2)[0] || '../../package.json';
-const packageJson = require(packageJsonDir);
+const packageJson = require(getPackageJsonDir());
 
 console.log(chalk.cyan('\nChecking dependencies for wildcards...'));
 
 const dependencySections = [packageJson.dependencies, packageJson.devDependencies].filter(Boolean);
-const numberOfDependencies = dependencySections.reduce(
-    (total, dependencies) => Object.keys(dependencies).length + total,
-    0
-);
-let progressTracker = 1;
-dependencySections.forEach(dependencySection =>
-    Object.keys(dependencySection).forEach(dependencyName => {
+dependencySections.forEach(checkDependencySection);
+
+console.log(chalk.green('All dependencies are wildcard free!'));
+
+function getPackageJsonDir() {
+    return process.argv.slice(2)[0] || '../../package.json';
+}
+
+function checkDependencySection(dependencySection) {
+    Object.keys(dependencySection).forEach(checkDependency);
+
+    function checkDependency(dependencyName) {
         const versionString = dependencySection[dependencyName];
-        console.log(
-            chalk.cyan(`Progress: ${Math.round((100 * progressTracker++) / numberOfDependencies)}%`)
-        );
         if (versionString.includes('http')) {
             console.log(
                 chalk.yellow(
@@ -44,7 +45,5 @@ dependencySections.forEach(dependencySection =>
             console.log(errorMessage);
             throw errorMessage;
         }
-    })
-);
-
-console.log(chalk.green('All dependencies are wildcard free!'));
+    }
+}
