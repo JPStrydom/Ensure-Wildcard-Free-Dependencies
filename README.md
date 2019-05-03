@@ -8,7 +8,7 @@
 
 This is a simple tool that ensures your Node.js dependencies are wildcard (^, >, <=, ~, *, etc.) free.
 
-A wildcard in a dependency version indicates that that dependence has to be the specified version or higher - which 
+A wildcard in a dependency's version indicates that that dependency does not have to be an exact version (you can read more about Node.js dependency wildcards [here](https://docs.npmjs.com/files/package.json#dependencies)) - which 
 means that two `npm install`/`yarn install` commands could result in two different versions of the dependency being 
 installed. This could introduce unwanted errors, so it is good practice to ensure your dependencies are wildcard free. 
 
