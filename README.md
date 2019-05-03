@@ -42,7 +42,7 @@ yarn add ensure-wildcard-free-dependencies --dev
 ### Examples
  
 ###### Invalid Dependency:
- ```json
+ ```javascript
  // package.json
 {
     ...
@@ -65,7 +65,7 @@ Dependency ensure-wildcard-free-dependencies has a version string (^1.0.0) with 
 ```
  
 ###### Valid Dependency:
- ```json
+ ```javascript
  // package.json
 {
     ...
