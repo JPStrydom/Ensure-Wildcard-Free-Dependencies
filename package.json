@@ -1,6 +1,6 @@
 {
   "name": "ensure-wildcard-free-dependencies",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "This is a simple tool that ensures your Node.js dependencies are wildcard (^) free.",
   "main": "index.js",
   "bin": {
