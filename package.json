@@ -4,7 +4,15 @@
   "description": "This is a simple tool that ensures your Node.js dependencies are wildcard (^) free.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-local": "node index.js ./package.json",
+    "prettier": "prettier --write **/*.js",
+    "test": "node ./test/index"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run start-local && npm run prettier",
+      "pre-push": "npm run test"
+    }
   },
   "repository": {
     "type": "git",
@@ -12,13 +20,20 @@
   },
   "keywords": [
     "wildcard",
-    "dependancies",
-    "devDependancies"
+    "dependencies",
+    "devDependencies"
   ],
   "author": "JP Strydom",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies/issues"
   },
-  "homepage": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies#readme"
+  "homepage": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies#readme",
+  "dependencies": {
+    "chalk": "2.4.2"
+  },
+  "devDependencies": {
+    "husky": "2.2.0",
+    "prettier": "1.17.0"
+  }
 }
