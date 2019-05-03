@@ -1,8 +1,11 @@
 {
   "name": "ensure-wildcard-free-dependencies",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a simple tool that ensures your Node.js dependencies are wildcard (^) free.",
   "main": "index.js",
+  "bin": {
+    "ensure-wildcard-free-dependencies": "./index.js"
+  },
   "scripts": {
     "start-local": "node index.js ./package.json",
     "prettier": "prettier --write **/*.js",

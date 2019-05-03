@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+'use strict';
+
 const chalk = require('chalk');
 
 const packageJsonDir = process.argv.slice(2)[0] || '../../package.json';
