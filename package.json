@@ -1,0 +1,24 @@
+{
+  "name": "ensure-wildcard-free-dependencies",
+  "version": "1.0.0",
+  "description": "This is a simple tool that ensures your Node.js dependencies are wildcard (^) free.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies.git"
+  },
+  "keywords": [
+    "wildcard",
+    "dependancies",
+    "devDependancies"
+  ],
+  "author": "JP Strydom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies/issues"
+  },
+  "homepage": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies#readme"
+}
