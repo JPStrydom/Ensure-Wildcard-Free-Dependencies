@@ -56,13 +56,7 @@ yarn add ensure-wildcard-free-dependencies --dev
     ...
 }
 ```
-```shell
-// local terminal
-$ ensure-wildcard-free-dependencies
- 
-Checking dependencies for wildcards
-Dependency ensure-wildcard-free-dependencies has a version string (^1.0.0) with invalid characters // <- Exception
-```
+![Demo](assets/failure-terminal.png)
  
 ###### Valid Dependency:
  ```javascript
@@ -79,10 +73,4 @@ Dependency ensure-wildcard-free-dependencies has a version string (^1.0.0) with 
     ...
 }
 ```
-```shell
-// local terminal
-$ ensure-wildcard-free-dependencies
- 
-Checking dependencies for wildcards
-All dependencies are wildcard free // <- No exceptions
-```
+![Demo](assets/success-terminal.png)
