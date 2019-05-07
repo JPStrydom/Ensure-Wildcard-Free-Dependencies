@@ -39,6 +39,12 @@ yarn add ensure-wildcard-free-dependencies --dev
  ``` 
  If it finds any wildcards it will throw an error containing all the relevant information.
  
+ As an extra precaution, you can configure NPM to not save dependencies with wildcards in their version numbers. This can be done by adding the following line to your `.npmrc` file:
+ ```
+save-exact=true
+```
+You can read more about configuring NPM [here](https://docs.npmjs.com/misc/config).
+ 
 ### Examples
  
 ###### Invalid Dependency:

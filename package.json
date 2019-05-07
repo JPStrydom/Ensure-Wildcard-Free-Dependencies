@@ -1,42 +1,59 @@
 {
   "name": "ensure-wildcard-free-dependencies",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "This is a simple tool that ensures your Node.js dependencies are wildcard (^, >, <=, ~, *, etc.) free.",
+  "keywords": [
+    "wildcard",
+    "dependencies",
+    "devDependencies"
+  ],
+  "contributors": [
+    {
+      "name": "JP Strydom",
+      "email": "jpstrydom8@gmail.com"
+    },
+    {
+      "name": "Ryan Kotzen",
+      "email": "potz666@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies/issues"
+  },
+  "homepage": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies#readme",
   "main": "index.js",
   "bin": {
     "ensure-wildcard-free-dependencies": "./index.js"
   },
   "scripts": {
     "start-local": "node index.js ./package.json",
-    "prettier": "prettier --write **/*.js",
+    "lint": "prettier --write **/*.js",
     "test": "node ./test/index"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run start-local && npm run prettier",
-      "pre-push": "npm run test"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies.git"
-  },
-  "keywords": [
-    "wildcard",
-    "dependencies",
-    "devDependencies"
-  ],
-  "author": "JP Strydom",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies/issues"
-  },
-  "homepage": "https://github.com/JPStrydom/Ensure-Wildcard-Free-Dependencies#readme",
   "dependencies": {
     "chalk": "2.4.2"
   },
   "devDependencies": {
     "husky": "2.2.0",
+    "lint-staged": "8.1.6",
     "prettier": "1.17.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run start-local",
+      "npm run lint",
+      "git add"
+    ]
   }
 }
